@@ -1,0 +1,10 @@
+{% extends 'head.html' %}
+{% block content %}
+    <div class="container">
+    <h2>Генератор Звітів</h2>
+        <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Згенерувати</button>
+    </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'head.html' %}
+{% block content %}
+ <form method="post">
+        {% csrf_token %}
+        <h2>Are you sure you want to remove {{ product.description }}</h2>
+        <button type="submit">Confirm</button>
+    </form>
+{% endblock %}
