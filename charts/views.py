@@ -1,8 +1,11 @@
+from django.contrib.auth.decorators import login_required
+
 from Transactions.models import Transactions
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from Transactions.forms import GenereteReport
+from django.contrib.auth.forms import UserCreationForm
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -38,12 +41,20 @@ class ChartData(APIView):
         }
         return Response(data)
 
+
+@login_required
 def getReportdata(request):
     form = GenereteReport()
-    # model = Transactions.objects.all()
-    # report = Transactions.objects.filter(created='2012/09/01')
-    # print(report.query)
     if form.is_valid():
         form.save()
         return redirect('home')
     return render(request, 'generateReport.html', {'form': form})
+
+
+def register(request):
+    form = UserCreationForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return redirect('login')
+    return render(request, 'registration/registr.html', {'form': form})

@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
-
+from charts.views import register
 
 admin.autodiscover()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('registration', register , name='registration'),
     url(r'^', include('Categories.urls')),
     url(r'^', include('Transactions.urls')),
     url(r'^', include('charts.urls')),

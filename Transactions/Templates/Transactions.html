@@ -2,39 +2,40 @@
 {% block content %}
     <div class="container">
         <h1>Транзакції</h1>
-    <table border="3" class="table" >
-        <tr bgcolor="#808080">
-        <td>#</td>
-        <td>Категорія</td>
-        <td>Тип Операції</td>
-        <td>Сума</td>
-        <td>Дата</td>
-        <td>Опис</td>
-        <td>Редагування</td>
-        <td>Видалення</td>
-      </tr>
-        {% for product in products %}
+        <table border="3" class="table">
+            <thead class="thead-dark">
             <tr>
-        <td>{{ product.id }}</td>
-        <td>{{ product.category.name }}</td>
-        <td>{{ product.typeOper.name }}</td>
-        <td>{{ product.suma }}</td>
-        <td>{{ product.created }}</td>
-        <td>{{ product.description }}</td>
-        <td>
-            <a href="{% url 'update_transaction' product.id %}">
-                <img src="https://img.icons8.com/ios-glyphs/30/000000/edit.png">
-            </a>
-        </td>
-        <td>
-            <a href="{% url 'delete_transaction' product.id %}">
-                <img src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png">
-            </a>
-        </td>
+                <th scope="col">#</th>
+                <th scope="col">Категорія</th>
+                <th scope="col">Тип Операції</th>
+                <th scope="col">Сума</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Опис</th>
+                <th scope="col">Редагування</th>
+                <th scope="col">Видалення</th>
             </tr>
-        {% endfor %}
-    </table>
-     <a class="btn btn-success" href="{% url 'create_transaction' %}">New product</a>
+            </thead>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.category.name }}</td>
+                    <td>{{ product.typeOper.name }}</td>
+                    <td>{{ product.suma }}</td>
+                    <td>{{ product.created }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>
+                        <a href="{% url 'update_transaction' product.id %}">
+                            <img src="https://img.icons8.com/ios-glyphs/30/000000/edit.png">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'delete_transaction' product.id %}">
+                            <img src="https://img.icons8.com/ios-glyphs/30/000000/delete-sign.png">
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <a class="btn btn-success" href="{% url 'create_transaction' %}">New product</a>
     </div>
-
 {% endblock %}
