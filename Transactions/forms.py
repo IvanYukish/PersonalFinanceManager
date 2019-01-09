@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import DateField
+from django.contrib.admin.widgets import AdminDateWidget
 from .models import Transactions
 
 
@@ -9,8 +11,9 @@ class TransactionsForm(forms.ModelForm):
 
 
 class GenereteReport(forms.ModelForm):
-    olddate = forms.DateField()
-    newdate = forms.DateField()
+    olddate = DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    newdate = DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
     class Meta:
         model = Transactions
         fields = ['typeOper', 'category']
