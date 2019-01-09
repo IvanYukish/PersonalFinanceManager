@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from Transactions.forms import GenereteReport
-from django.contrib.auth.forms import UserCreationForm
+from Categories.forms import MyUserCreationForm
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -52,7 +52,7 @@ def getReportdata(request):
 
 
 def register(request):
-    form = UserCreationForm(request.POST or None)
+    form = MyUserCreationForm(request.POST or None)
 
     if form.is_valid():
         form.save()
