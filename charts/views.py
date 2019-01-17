@@ -31,10 +31,17 @@ class ChartData(APIView):
     def get(self, request, format=None):
         labels = []
         default_items = []
-        transacts = Transactions.objects.all()
-        for transact in transacts:
-            labels.append(transact.category.name)
-            default_items.append(int(transact.suma))
+        form = GenereteReport(request.GET)
+        if form.is_valid():
+            old_date = form.cleaned_data['olddate']
+            new_date = form.cleaned_data['newdate']
+            categopy = form.cleaned_data['category']
+            transacts = Transactions.objects.filter(created__gte=old_date, created__lte=new_date)
+            for transact in transacts:
+                labels.append(transact.category.name)
+                default_items.append(int(transact.suma))
+        else:
+            print(form.errors)
         data = {
             "labels": labels,
             "default": default_items,

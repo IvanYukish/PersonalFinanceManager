@@ -31,4 +31,4 @@ class Transactions(models.Model):
         verbose_name_plural = 'Транзакції'
 
     def __str__(self):
-        return "Категорія {0}".format(self.category)
+        return "Category {0}".format(self.category)
